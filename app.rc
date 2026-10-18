@@ -1,0 +1,36 @@
+#include <windows.h>
+
+// 应用图标（多尺寸：16/20/24/32/48/64/128/256）。
+// 由 tools/make_icon.py 生成，品牌蓝圆角方块 + 白色「译」字。
+// ID 必须与 app_messages.h 里的 kAppIconId 保持一致。
+101 ICON "app.ico"
+
+// 版本信息与图标资源
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION     0,1,0,0
+PRODUCTVERSION  0,1,0,0
+FILEFLAGSMASK   VS_FFI_FILEFLAGSMASK
+FILEFLAGS       0x0L
+FILEOS          VOS_NT_WINDOWS32
+FILETYPE        VFT_APP
+FILESUBTYPE     VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404b0"
+        BEGIN
+            VALUE "CompanyName",      "LightTransAI"
+            VALUE "FileDescription",  "鲤桥翻译 - 轻量级桌面翻译工具"
+            VALUE "FileVersion",      "0.1.0.0"
+            VALUE "InternalName",     "LightTransAI"
+            VALUE "LegalCopyright",   "Copyright (C) 2026"
+            VALUE "OriginalFilename", "LightTransAI.exe"
+            VALUE "ProductName",      "鲤桥翻译"
+            VALUE "ProductVersion",   "0.1.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END

@@ -1,0 +1,38 @@
+# ===== 编译产物（可完全再生，不入库）=====
+build/
+*.obj
+*.pdb
+*.ilk
+*.res
+*.exp
+*.lib
+vc140.pdb
+*.exe
+
+# ===== 运行期数据（绝不可入库）=====
+# 配置里含 API Key 的 DPAPI 密文，日志里可能含请求内容
+config.json
+*.log
+.wtest
+.wtest_probe
+.wprobe
+
+# 便携模式的数据目录（若程序回退到此处，会写配置与日志）
+LightTransAI_data/
+%TEMP%/LightTransAI/
+
+# ===== 恢复用临时目录（历史遗留，不入库）=====
+_recover_backup/
+
+# ===== 编辑器 / 系统 =====
+.vs/
+.vscode/
+*.user
+*.suo
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ===== Python（图标生成脚本的缓存）=====
+__pycache__/
+*.pyc
