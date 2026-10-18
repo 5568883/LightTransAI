@@ -34,18 +34,23 @@ Windows 轻量级桌面翻译工具。C++20 + 原生 Win32 + Direct2D/DirectWrit
 | 仅快捷键 | **完全不安装全局鼠标钩子** —— 担心影响游戏或反作弊时选它 |
 | 仅悬浮按钮 | 不注册 `Alt+E` |
 
-### 重要：程序必须放在此目录运行
+### 运行位置要求
 
-项目位于 **`D:\LightTransAI`**，**不要**从 `D:\deepseek工作区\` 下运行。
-
-原因：AI 助手的工作区会给其中创建的所有文件打上 **Low（低）完整性** 标签，
-Windows 会让进程继承该标签，导致：
+程序本身对目录没有特殊要求，但**不要放在带「低完整性」标签的目录下**（例如某些
+沙箱、受限工作区、受控文件夹）。Windows 会让进程继承该标签，导致：
 
 - `SendInput` 注入的 Ctrl+C 被 UIPI 静默丢弃 → 取词失败
 - `Shell_NotifyIcon` 返回错误码 5 → 托盘图标无法创建
 - `%APPDATA%` 不可写 → 配置与日志落到程序目录
 
-这些现象与代码无关，纯粹是运行环境的完整性级别限制。
+排查方法（管理员 PowerShell）：
+
+```powershell
+icacls "你的目录" | Select-String Mandatory
+```
+
+若出现 `Mandatory Label\Low Mandatory Level`，换到普通用户目录即可（如
+`D:\Apps\LightTransAI`）。这些现象与代码无关，是运行环境的完整性级别限制。
 
 ---
 
@@ -68,7 +73,7 @@ pwsh -File .\build.ps1 -Slim           # 构建后清中间产物，只留 exe
 同时会**自动在工程根目录放一份 `鲤桥翻译.exe`**（仅 Release），方便直接双击或拷给别人：
 
 ```
-D:\LightTransAI\
+<仓库根目录>\
 ├── 鲤桥翻译.exe                    ← 好找的入口，构建时自动同步
 ├── build\Release\LightTransAI.exe  ← 真正的链接产物
 └── ...
